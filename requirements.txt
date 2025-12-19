@@ -1,0 +1,16 @@
+yfinance>=0.2.0
+pandas>=2.0.0
+numpy<2.0.0
+matplotlib
+seaborn
+scikit-learn
+statsmodels
+xgboost
+torch
+gluonts>=0.14.0
+huggingface_hub
+transformers
+uni2ts[notebooks] @ git+https://github.com/SalesforceAIResearch/uni2ts.git
+pyyaml
+tqdm
+scipy
