@@ -1,17 +1,28 @@
-dataset:
-  ticker: "SPY"             # S&P 500 ETF (Finance Domain)
-  [cite_start]frequency: "1d"           # Daily [cite: 26]
-  seasonality: 5            # 5 trading days in a week (or 7 if strict calendar)
-  start_date: "2015-01-01"  # Long history (>500 steps)
-  end_date: "2024-12-31"
-
 experiment:
-  [cite_start]horizon: 14               # 14 Days [cite: 37]
-  context_length: 60        # Lookback for Moirai
-  [cite_start]n_splits: 3               # Number of rolling folds 
-  test_size: 60             # Final held-out test size
-  [cite_start]random_seed: 42           # Reproducibility [cite: 116]
+  horizon: 14
+  context_length: 60
+  n_splits: 3
+  test_size: 60
+  random_seed: 42
 
 models:
   moirai_small: "Salesforce/moirai-1.1-R-small"
-  moirai_base: "Salesforce/moirai-1.1-R-base"
+  # moirai_base: "Salesforce/moirai-1.1-R-base"
+
+datasets:
+  SPY:
+    type: "yahoo"
+    ticker: "SPY"
+    frequency: "D"
+    seasonality: 5
+    start_date: "2015-01-01"
+    end_date: "2024-12-31"
+
+  AQI_LA:
+    type: "aqi"
+    lat: 34.0522
+    lon: -118.2437
+    frequency: "D"
+    seasonality: 7
+    start_date: "2022-08-10"
+    end_date: "2024-12-31"
