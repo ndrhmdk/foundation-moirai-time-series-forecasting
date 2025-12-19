@@ -36,5 +36,7 @@ class MoiraiPredictor:
             'q95': forecast.quantile(0.95),
             'q25': forecast.quantile(0.25),
             'q75': forecast.quantile(0.75),
+            'q10': forecast.quantile(0.1),
+            'q90': forecast.quantile(0.9),
             'samples': forecast.samples
         }
