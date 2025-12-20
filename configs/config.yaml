@@ -1,5 +1,5 @@
 experiment:
-  horizon: 14
+  horizon: 60
   context_length: 60
   n_splits: 3
   test_size: 60
@@ -7,13 +7,13 @@ experiment:
 
 models:
   moirai_small: "Salesforce/moirai-1.1-R-small"
-  # moirai_base: "Salesforce/moirai-1.1-R-base"
+  moirai_base: "Salesforce/moirai-1.1-R-base"
 
 datasets:
   SPY:
     type: "yahoo"
     ticker: "SPY"
-    frequency: "D"
+    frequency: "B"
     seasonality: 5
     start_date: "2015-01-01"
     end_date: "2024-12-31"
