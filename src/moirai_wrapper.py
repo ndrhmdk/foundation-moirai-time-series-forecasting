@@ -1,27 +1,31 @@
 import numpy as np
 import pandas as pd
 from gluonts.dataset.pandas import PandasDataset
-from uni2ts.model.moirai import MoiraiForecast
+from uni2ts.model.moirai import MoiraiForecast, MoiraiModule
 
 class MoiraiPredictor:
     def __init__(self, model_name, context_length, horizon, device, freq="D"):
+        # Load Pre-trained Module
+        module = MoiraiModule.from_pretrained(model_name)
+        
+        # Initialize Forecaster Wrapper
         self.model = MoiraiForecast(
-            module=dict(
-                pretrained_model_id=model_name,
-                patch_size='auto',
-                context_length=context_length,
-                prediction_length=horizon,
-                target_dim=1,
-                feat_dynamic_real_dim=0,
-                past_feat_dynamic_real_dim=0
-            )
+            module=module,
+            patch_size='auto',
+            context_length=context_length,
+            prediction_length=horizon,
+            target_dim=1,
+            feat_dynamic_real_dim=0,
+            past_feat_dynamic_real_dim=0
         )
-        self.predictor = self.model.create_predictor(batch_size=8, device=device)
+        
+        # Predictor
+        self.predictor = self.model.create_predictor(batch_size=8, device=str(device))
         self.freq = freq
         
     def predict(self, series_pd):
         ds = PandasDataset(
-            {'target': series_pd.values},
+            {'target': series_pd},
             target='target',
             freq=self.freq
         )

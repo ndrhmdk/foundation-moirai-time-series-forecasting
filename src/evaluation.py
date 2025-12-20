@@ -4,7 +4,7 @@ from sklearn.metrics import mean_absolute_error, root_mean_squared_error
 from scipy.stats import wilcoxon
 from tqdm import tqdm
 
-def metrics(y_true, y_pred, y_train_hist):
+def cal_metrics(y_true, y_pred, y_train_hist):
     mae = mean_absolute_error(y_true, y_pred)
     rmse = root_mean_squared_error(y_true, y_pred)
     
@@ -58,8 +58,8 @@ def rolling_cv(train_series, valid_series, baselines, moirai_models, config):
             
         # 3. Metrics
         for model_name, y_hat in fold_preds.items():
-            metrics = metrics(test.values, y_hat, train.values)
-            metrics['models'] = model_name
+            metrics = cal_metrics(test.values, y_hat, train.values)
+            metrics['model'] = model_name
             metrics['fold'] = i
             results.append(metrics)
             

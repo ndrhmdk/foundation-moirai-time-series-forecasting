@@ -73,7 +73,6 @@ def load_aqi(name, config):
     df['values'] = df['values'].interpolate(method='linear')
     return df
 
-
 def load_data(dataset_name, config):
     source_type = config['datasets'][dataset_name]['type']
     
