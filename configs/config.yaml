@@ -1,7 +1,9 @@
 experiment:
   horizon: 60
-  context_length: 60
-  n_splits: 3
+  context_length:
+    zero_shot: 60
+    few_shot: 240
+  n_splits: 10
   test_size: 60
   random_seed: 42
 
