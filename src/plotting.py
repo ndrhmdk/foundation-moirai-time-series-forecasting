@@ -71,7 +71,7 @@ def plot_calibration(preds_storage, dataset_name):
     if not records:
         return
     df_cal = pd.DataFrame(records)
-    plt.figure(figsize=(6, 6))
+    plt.figure(figsize=(10, 10))
     sns.barplot(data=df_cal, x='model', y='empirical')
     plt.axhline(0.8, color='red', linestyle='--', label='Expected (0.8)')
     plt.ylim(0, 1.0)
@@ -83,9 +83,16 @@ def plot_calibration(preds_storage, dataset_name):
 def plot_forecast_overlay(train_series, test_series, prediction_dict, dataset_name):
     PATH = f"{PROJECT_ROOT}/outputs/04_{dataset_name.lower()}_overlay_prediction.png"
     SAVE_PATH = os.path.relpath(PATH, PROJECT_ROOT)
-    print(f"Plot saved: {SAVE_PATH}")
-    models_to_plot = ['Moirai-Small', 'Moirai-Base']
-    fig, axes = plt.subplots(nrows=2, ncols=1, figsize=(12, 10), sharex=True)
+    print(f"Plot forecast overlay saved: {SAVE_PATH}")
+    
+    models_to_plot = list(prediction_dict.keys())
+    num_models = len(models_to_plot)
+    
+    fig_height = 4 * num_models
+    
+    fig, axes = plt.subplots(nrows=num_models, ncols=1, figsize=(12, fig_height), sharex=True)
+    if num_models == 1:
+        axes = [axes]
     fig.suptitle(f"[{dataset_name}] Forecast Visualization", fontsize=16, y=0.95, fontweight='bold')
     
     history_len = 100
@@ -108,7 +115,7 @@ def plot_forecast_overlay(train_series, test_series, prediction_dict, dataset_na
             dates = test_series.index[:forecast_len]
             
             # Median forecast
-            ax.plot(dates, m['median'], color='#2b6ce6', linewidth=2, label=f'{model_key} (Median)')
+            ax.plot(dates, m['median'], color='#FA6868', linewidth=2, label=f'{model_key} (Median)')
             
             # Inner Band (50% CI)
             ax.fill_between(
