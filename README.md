@@ -4,6 +4,8 @@
 [![huggingface](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-FFD21E)](https://huggingface.co/collections/Salesforce/moirai-r-models-65c8d3a94c51428c300e0742)
 [![License: MIT](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
+![alt text](architecture.png)
+
 ## **1. Project Overview and Objectives**
 
 This project investigates the forecasting capabilities of **Salesforce's Moirai**, a Masked Encoder-based Universal Time Series Forecasting Transformer. The primary objective is to evaluate whether a general-purpose foundation model can outperform robust statistical baselines on domain-specific real-world data without task-specific fine-tuning.
