@@ -62,6 +62,7 @@ moirai-time-series-project/
 ├── .gitignore                  # Ignore venv, cache, outputs 
 ├── .python-version             # Python version (pyenv / uv)
 ├── main.py                     # Main experiment runner
+├── run.sh                      # Run experiment
 ├── pyproject.toml              # Project metadata
 ├── requirements.txt            # Runtime dependencies
 ├── uv.lock                     # Reproducible dependency lock
@@ -136,6 +137,11 @@ uv run python main.py --dataset SPY
 **For Environmental Data (AQI):**
 ```bash
 uv run python main.py --dataset AQI_LA
+```
+
+Or, simply run all with 
+```bash
+./run.sh
 ```
 
 **Random Seeds:**
